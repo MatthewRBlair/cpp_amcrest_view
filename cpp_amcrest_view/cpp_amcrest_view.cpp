@@ -5,6 +5,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 using namespace cv;
 using namespace std;
@@ -78,7 +80,7 @@ int main()
     while (!cap.isOpened()) {
         
         cerr << "Error opening video stream." << endl;
-        Sleep(1000);
+        this_thread::sleep_for(chrono::milliseconds(2000));
         //return 1;
     }
 
