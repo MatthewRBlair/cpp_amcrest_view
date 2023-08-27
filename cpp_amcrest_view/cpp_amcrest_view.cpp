@@ -5,8 +5,7 @@
 
 #include <fstream>
 #include <iostream>
-#include <chrono>
-#include <thread>
+
 
 using namespace cv;
 using namespace std;
@@ -73,17 +72,15 @@ int main()
     string url = oss.str();
 
     VideoCapture cap(url);
+    
+    if (!cap.isOpened())
+    {
+        cerr << "Error opening video stream." << endl;
+        return 1;
+    }
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-    
-    while (!cap.isOpened()) {
-        
-        cerr << "Error opening video stream." << endl;
-        this_thread::sleep_for(chrono::milliseconds(2000));
-        cap.open(url);
-        //return 1;
-    }
 
     // Create a window to display the video
     if (config["headless"].compare("false") == 0)
