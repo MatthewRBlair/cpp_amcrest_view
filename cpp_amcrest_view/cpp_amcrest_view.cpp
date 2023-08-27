@@ -85,11 +85,11 @@ int main()
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-
-    if (!cap.isOpened()) {
-        cerr << "Error opening video stream." << endl;
-        return 1;
-    }
+    
+    //if (!cap.isOpened()) {
+    //    cerr << "Error opening video stream." << endl;
+    //    return 1;
+    //}
 
     // Create a window to display the video
     namedWindow("RTSP Stream", cv::WINDOW_NORMAL);
