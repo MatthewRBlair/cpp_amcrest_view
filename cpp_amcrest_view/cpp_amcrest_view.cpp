@@ -92,7 +92,7 @@ int main()
     //}
 
     // Create a window to display the video
-    namedWindow("RTSP Stream", cv::WINDOW_NORMAL);
+    //namedWindow("RTSP Stream", cv::WINDOW_NORMAL);
 
     dpp::cluster bot(config["discord_bot_token"]);
 
@@ -129,7 +129,7 @@ int main()
             break;
         }
 
-        imshow("RTSP Stream", frame);
+        //imshow("RTSP Stream", frame);
 
         if (detected_people.size() > 0 && bot_connected)
         {
