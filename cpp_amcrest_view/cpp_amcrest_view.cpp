@@ -94,6 +94,14 @@ int main()
 
     bot.start();
 
+    dpp::message logon;
+    ostringstream logon_message_s;
+    logon_message_s << config["name"] << " logging on";
+    string logon_message = logon_message_s.str();
+    logon.set_content(logon_message);
+    logon.channel_id = config["discord_channel"];
+    bot.message_create(logon);
+
     while (true) {
         Mat frame;
         cap >> frame; // Capture frame from RTSP stream
@@ -128,6 +136,14 @@ int main()
             break;
         }
     }
+
+    dpp::message logoff;
+    ostringstream logoff_message_s;
+    logoff_message_s << config["name"] << " logging off";
+    string logoff_message = logoff_message_s.str();
+    logoff.set_content(logon_message);
+    logoff.channel_id = config["discord_channel"];
+    bot.message_create(logoff);
 
     cap.release();
     cv::destroyAllWindows();
