@@ -70,29 +70,18 @@ int main()
     }
     string url = oss.str();
 
-    VideoCapture cap; 
-    try
-    {
-        // Initialize VideoCapture with RTSP stream URL
-        cap.open(url);
-    }
-    catch (cv::Exception& e)
-    {
-        const char* err_msg = e.what();
-        std::cout << "Failed to open video stream: " << err_msg << std::endl;
-        return 1;
-    }
+    VideoCapture cap(url);
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
     
-    //if (!cap.isOpened()) {
-    //    cerr << "Error opening video stream." << endl;
-    //    return 1;
-    //}
+    if (!cap.isOpened()) {
+        cerr << "Error opening video stream." << endl;
+        return 1;
+    }
 
     // Create a window to display the video
-    //namedWindow("RTSP Stream", cv::WINDOW_NORMAL);
+    //namedWindow("Camera Stream", cv::WINDOW_NORMAL);
 
     dpp::cluster bot(config["discord_bot_token"]);
 
@@ -129,7 +118,7 @@ int main()
             break;
         }
 
-        //imshow("RTSP Stream", frame);
+        //imshow("Camera Stream", frame);
 
         if (detected_people.size() > 0 && bot_connected)
         {
