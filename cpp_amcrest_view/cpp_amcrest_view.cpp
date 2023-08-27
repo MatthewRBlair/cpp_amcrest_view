@@ -81,6 +81,7 @@ int main()
         
         cerr << "Error opening video stream." << endl;
         this_thread::sleep_for(chrono::milliseconds(2000));
+        cap.open(url);
         //return 1;
     }
 
