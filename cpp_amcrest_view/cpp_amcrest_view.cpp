@@ -81,7 +81,10 @@ int main()
     }
 
     // Create a window to display the video
-    //namedWindow("Camera Stream", cv::WINDOW_NORMAL);
+    if (config["headless"].compare("false") == 0)
+    {
+        namedWindow("Camera Stream", cv::WINDOW_NORMAL);
+    }
 
     dpp::cluster bot(config["discord_bot_token"]);
 
@@ -118,7 +121,10 @@ int main()
             break;
         }
 
-        //imshow("Camera Stream", frame);
+        if (config["headless"].compare("false") == 0)
+        {
+            imshow("Camera Stream", frame);
+        }
 
         if (detected_people.size() > 0 && bot_connected)
         {
