@@ -71,15 +71,14 @@ int main()
     string url = oss.str();
 
     VideoCapture cap(url);
-    cap.setExceptionMode(true);
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
     
-    if (!cap.isOpened()) {
+    while (!cap.isOpened()) {
         
         cerr << "Error opening video stream." << endl;
-        return 1;
+        //return 1;
     }
 
     // Create a window to display the video
