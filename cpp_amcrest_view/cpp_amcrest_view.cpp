@@ -70,8 +70,18 @@ int main()
     }
     string url = oss.str();
 
-    // Initialize VideoCapture with RTSP stream URL
-    VideoCapture cap(url);
+    VideoCapture cap; 
+    try
+    {
+        // Initialize VideoCapture with RTSP stream URL
+        cap.open(url);
+    }
+    catch (cv::Exception& e)
+    {
+        const char* err_msg = e.what();
+        std::cout << "Failed to open video stream: " << err_msg << std::endl;
+        return 1;
+    }
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
