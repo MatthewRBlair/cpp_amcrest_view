@@ -78,6 +78,7 @@ int main()
     while (!cap.isOpened()) {
         
         cerr << "Error opening video stream." << endl;
+        Sleep(1000);
         //return 1;
     }
 
