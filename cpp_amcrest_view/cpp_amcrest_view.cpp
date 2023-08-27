@@ -72,7 +72,7 @@ int main()
     }
     string url = oss.str();
 
-    VideoCapture cap(url);
+    VideoCapture cap(url, CAP_GSTREAMER);
 
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
